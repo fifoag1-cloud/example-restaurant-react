@@ -1,25 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Reservation from './pages/Reservation';
+import Admin from './pages/admin/Admin';
+import useTheme from './hooks/useTheme';
 
 function App() {
+    useTheme();
+
     return (
-        <BrowserRouter>
-            <div className="min-h-screen bg-gray-50 flex flex-col">
+        <HashRouter>
+            <div className="bg-background min-h-screen" style={{ fontFamily: 'var(--font-sans)' }}>
                 <Navbar />
-                <main className="flex-grow">
+                <main>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/menu" element={<Menu />} />
                         <Route path="/reservation" element={<Reservation />} />
+                        <Route path="/admin" element={<Admin />} />
                     </Routes>
                 </main>
-                <Footer />
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
